@@ -1,20 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Todo List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
   {{!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> --}}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css">
 </head>
 
-<body>
+<body class="bg-light">
+  <header>
+    <nav class="navbar navbar-dark bg-primary justify-content-between">
+      <a class="navbar-brand" href="/">Todo List</a>
+      {{#if isAuthenticated}}
+      <a href="/users/logout" class="btn btn-outline-light">Logout</a>
+      {{else}}
+      <a href="/users/login" class="btn btn-outline-light">Login</a>
+      {{/if}}
+    </nav>
+  </header>
 
-  {{{body}}}
+  <main>
+    <div class="container mt-3">
+      {{{body}}}
 
+    </div>
+  </main>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>

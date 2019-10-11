@@ -23,7 +23,13 @@ router.get('/new', authenticated, (req, res) => {
 
 //新增一個todo
 router.post('/', authenticated, (req, res) => {
-  res.send('新增Todo')
+  Todo.create({
+    name: req.body.name,
+    done: false,
+    UserId: req.user.id
+  })
+    .then((todo) => { return res.redirect('/') })
+    .catch((error) => { return res.status(422).json(error) })
 })
 
 
