@@ -34,7 +34,7 @@ router.post('/', authenticated, (req, res) => {
 
 
 
-//瀏覽特定todo修改頁面
+//瀏覽特定todo頁面
 router.get('/:id', authenticated, (req, res) => {
   User.findByPk(req.user.id)
     .then((user) => {
@@ -47,7 +47,9 @@ router.get('/:id', authenticated, (req, res) => {
         }
       })
     })
-    .then((todo) => { return res.render('detail', { todo: todo }) })
+    .then((todo) => {
+      return res.render('detail', { todo: todo })
+    })
     .catch((error) => { return res.status(422).json(error) })
 })
 
