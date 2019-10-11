@@ -8,24 +8,18 @@ const passport = require('passport')
 const app = express()
 const port = 3000
 
-// 載入 model
-const db = require('./models')
-const Todo = db.Todo
-const User = db.User
-
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
-app.use('/users', require('./routes/user'))
-
 app.use(session({
-  secret: 'your secret key',
+  secret: 'hang in there',
   resave: 'false',
   saveUninitialized: 'false',
 }))
+
 // 使用 Passport - 要在「使用路由器」前面
 app.use(passport.initialize())
 app.use(passport.session())
@@ -35,11 +29,9 @@ app.use((req, res, next) => {
   next()
 })
 
-
-// 首頁
-app.get('/', (req, res) => {
-  res.send('hello world')
-})
+app.use('/', require('./routes/home'))
+app.use('/users', require('./routes/user'))
+app.use('/todos', require('./routes/todo'))
 
 
 app.listen(port, () => {
