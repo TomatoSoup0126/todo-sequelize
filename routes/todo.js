@@ -86,8 +86,20 @@ router.put('/:id', authenticated, (req, res) => {
 })
 
 //刪除特定todo
-router.delete('/:id', authenticated, (req, res) => {
-  res.send('刪除Todo')
+router.delete('/:id/delete', authenticated, (req, res) => {
+  User.findByPk(req.user.id)
+    .then((user) => {
+      if (!user) throw new Error("user not found")
+
+      return Todo.destroy({
+        where: {
+          UserId: req.user.id,
+          Id: req.params.id
+        }
+      })
+    })
+    .then((todo) => { return res.redirect('/') })
+    .catch((error) => { return res.status(422).json(error) })
 })
 
 
