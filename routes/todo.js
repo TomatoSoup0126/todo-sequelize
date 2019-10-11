@@ -18,7 +18,7 @@ router.get('/', authenticated, (req, res) => {
 
 //新增一個todo的頁面
 router.get('/new', authenticated, (req, res) => {
-  res.send('新增Todo的頁面')
+  return res.render('new')
 })
 
 //新增一個todo
