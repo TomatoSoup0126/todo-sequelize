@@ -18,6 +18,8 @@ app.set('view engine', 'handlebars')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
+
+
 app.use(session({
   secret: 'hang in there',
   resave: 'false',
@@ -30,6 +32,7 @@ app.use(passport.session())
 require('./config/passport')(passport)
 app.use((req, res, next) => {
   res.locals.user = req.user
+  res.locals.isAuthenticated = req.isAuthenticated()
   next()
 })
 
