@@ -6,10 +6,12 @@ const bcrypt = require('bcryptjs')
 // 載入 user model
 const db = require('../models')
 const User = db.User
+
 // 登入頁面
 router.get('/login', (req, res) => {
   res.render('login')
 })
+
 // 登入檢查
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
@@ -17,14 +19,17 @@ router.post('/login', (req, res, next) => {
     failureRedirect: '/users/login',
   })(req, res, next)
 })
+
 // 註冊頁面
 router.get('/register', (req, res) => {
   res.render('register')
 })
+
 // 註冊檢查
 router.post('/register', (req, res) => {
   const { name, email, password, password2 } = req.body
   User.findOne({ where: { email: email } }).then(user => {
+    console.log('gogo')
     if (user) {
       console.log('User already exists')
       res.render('register', {
@@ -34,6 +39,7 @@ router.post('/register', (req, res) => {
         password2
       })
     } else {
+      console.log('here')
       const newUser = new User({  //  如果 email 不存在就直接新增
         name,
         email,
@@ -55,10 +61,6 @@ router.post('/register', (req, res) => {
     }
   })
 })
-
-
-
-
 
 
 // 登出
