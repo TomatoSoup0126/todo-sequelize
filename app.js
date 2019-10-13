@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const passport = require('passport')
+const flash = require('connect-flash')
 
 const app = express()
 const port = 3000
@@ -26,6 +27,8 @@ app.use(session({
   saveUninitialized: 'false',
 }))
 
+app.use(flash())
+
 // 使用 Passport - 要在「使用路由器」前面
 app.use(passport.initialize())
 app.use(passport.session())
@@ -33,6 +36,8 @@ require('./config/passport')(passport)
 app.use((req, res, next) => {
   res.locals.user = req.user
   res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
   next()
 })
 
