@@ -1,18 +1,26 @@
-<a href="/todos/new" class="btn btn-primary mb-3">Create</a>
-
 <ul class="list-group col-xl-6 col-md-8 col-10 mx-auto">
   {{#each todos}}
   <li class="list-group-item">
     <div class="row">
-      <div class="col-auto mr-auto">
-        <input style="vertical-align: middle;" type="checkbox" name="done" {{#if this.done }} checked{{/if}} />
+      <div class="col-auto mr-auto d-flex align-items-center">
+        {{#if this.done }}
+        <h4 class="text-success mr-3"><i class="fas fa-check-circle"></i></h4>
+        {{else}}
+        <h4 class="text-danger mr-3"><i class="fas fa-times-circle"></i></h4>
+        {{/if}}
         <h4 style="display: inline;vertical-align: middle;">{{{this.name}}}</h4>
       </div>
       <div class="col-auto">
-        <a href="/todos/{{{this.id}}}" class="btn btn-secondary">detail</a>
-        <a href="/todos/{{{this.id}}}/edit" class="btn btn-success">edit</a>
+        <a href="/todos/{{{this.id}}}" class="btn btn-outline-dark font-weight-normal mr-1"><i
+            class="fas fa-ellipsis-h"></i></a>
+
+        <a href="/todos/{{{this.id}}}/edit" class="btn btn-outline-info font-weight-normal mr-3"><i class="far fa-edit"
+            aria-hidden="true"></i></a>
+
+
         <form action="/todos/{{{this.id}}}/delete?_method=DELETE" method="post" style="display:inline">
-          <button type="submit" class="btn btn-danger">delete</button>
+          <button type="submit" class="btn btn-outline-danger font-weight-normal"><i class="far fa-trash-alt"
+              aria-hidden="true"></i></button>
         </form>
       </div>
     </div>
