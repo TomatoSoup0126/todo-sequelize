@@ -1,0 +1,12 @@
+[
+  {
+    "name": "企鵝君",
+    "email": "penguin@test.com",
+    "password": "123456",
+  },
+  {
+    "name": "蕃茄湯",
+    "email": "tomatosoup@test.com",
+    "password": "123456",
+  }
+]
