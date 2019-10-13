@@ -1,7 +1,32 @@
 <div class="card mx-auto" style="width: 18rem;">
   <div class="card-body">
-    <input style="vertical-align: middle;" type="checkbox" name="done" {{#if todo.done }} checked{{/if}} />
     <h5 class="card-title">{{{todo.name}}}</h5>
-    <p class="card-text">{{{todo.detail}}}</p>
+    {{#if todo.done}}
+    <div class="d-flex align-items-center">
+      <h5 class="text-success mr-2 "><i class="fas fa-check-circle"></i></h5>
+      <h6 class="card-subtitle text-success">已完成</h6>
+    </div>
+    {{else}}
+    <div class="d-flex align-items-center">
+      <h5 class="text-danger mr-2 "><i class="fas fa-times-circle"></i></h5>
+      <h6 class="card-subtitle text-danger">未完成</h6>
+    </div>
+    {{/if}}
+    <div>
+      <p class="card-text my-0">建立時間：</p>
+      <p class="card-text mb-2">{{todo.createdAt}}</p>
+    </div>
+    <div>
+      <p class="card-text my-0">更新時間：</p>
+      <p class="card-text mb-2">{{todo.updatedAt}}</p>
+    </div>
+
+    <a href="/todos/{{{todo.id}}}/edit" class="btn btn-outline-info font-weight-normal mr-3"><i class="far fa-edit"
+        aria-hidden="true"></i></a>
+
+    <form action="/todos/{{{todo.id}}}/delete?_method=DELETE" method="post" style="display:inline">
+      <button type="submit" class="btn btn-outline-danger font-weight-normal"><i class="far fa-trash-alt"
+          aria-hidden="true"></i></button>
   </div>
+</div>
 </div>
