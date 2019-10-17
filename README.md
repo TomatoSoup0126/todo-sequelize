@@ -36,6 +36,11 @@ use todo_sequelize;
 npx sequelize-cli db:migrate
 ```
 
+- 建立seeder
+```
+npx sequelize-cli db:seed:all
+```
+
 - 使用終端機從github clone本專案
    ```
    $ git clone https://github.com/TomatoSoup0126/Expense_record.git
@@ -76,6 +81,16 @@ $ npm run dev
 http://localhost:3000/users/login
 ```
 便可連至該專案網頁
+
+- 備有兩組seeder供測試
+```
+penguin@test.com
+123456
+```
+```
+tomatosoup@test.com
+123456
+```
 
 
 ### 關閉伺服器
