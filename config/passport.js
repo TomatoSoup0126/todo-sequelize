@@ -38,7 +38,7 @@ module.exports = passport => {
           var randomPassword = Math.random().toString(36).slice(-8)
           bcrypt.genSalt(10, (err, salt) =>
             bcrypt.hash(randomPassword, salt, (err, hash) => {
-              var newUser = User({
+              var newUser = new User({
                 name: profile._json.name,
                 email: profile._json.email,
                 password: hash
